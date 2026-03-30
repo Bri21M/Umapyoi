@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="admin-container">
+  <div class="admin-header">
+    <h2>Panel de Administración</h2>
+    <p>Bienvenido, {{ session['usuario_nombre'] }} | 
+       <a href="{{ url_for('logout') }}">Cerrar Sesión</a></p>
+  </div>
+
+  <h3>Agregar Nuevo Producto</h3>
+  <form action="{{ url_for('admin_panel') }}" method="POST" enctype="multipart/form-data">
+    <input type="text" name="nombre" placeholder="Nombre del producto" required>
+    <input type="text" name="descripcion" placeholder="Descripción">
+    <input type="number" name="precio" step="0.01" placeholder="Precio" required>
+    <input type="number" name="stock" placeholder="Stock inicial" required>
+    <label class="file-label" id="file-label-text">
+      📷 Subir imagen del producto
+      <input type="file" name="imagen" accept="image/*" id="imagen-input">
+    </label>
+    <div id="preview-container" style="display:none; align-items:center; gap:10px; margin-top:8px;">
+      <img id="preview-img" src="" alt="Vista previa" style="width:80px; height:80px; object-fit:cover; border-radius:8px; border:1px solid #ccc;">
+      <span id="preview-nombre" style="font-size:0.9em; color:#555;"></span>
+    </div>
+    <button type="submit">Guardar Producto</button>
+  </form>
+
+  <script>
+    document.getElementById('imagen-input').addEventListener('change', function() {
+      const file = this.files[0];
+      const container = document.getElementById('preview-container');
+      const img = document.getElementById('preview-img');
+      const nombre = document.getElementById('preview-nombre');
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          img.src = e.target.result;
+          nombre.textContent = file.name;
+          container.style.display = 'flex';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        container.style.display = 'none';
+      }
+    });
+  </script>
+
+  <h3>Productos en Inventario</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Stock</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in productos %}
+      <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.nombre }}</td>
+        <td>${{ p.precio }}</td>
+        <td>{{ p.stock }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

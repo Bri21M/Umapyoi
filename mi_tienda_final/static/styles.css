@@ -1,0 +1,340 @@
+:root { 
+    /* Paleta de colores basada en tu imagen */
+    --bg-color: #f5efe6;      /* Crema claro del fondo */
+    --card-bg: #e8ded1;       /* Beige de las tarjetas y topbar */
+    --text-dark: #2d5a56;     /* Verde pino oscuro para textos y botones */
+    --font-serif: 'Georgia', serif; 
+    --font-sans: system-ui, Arial;
+}
+
+body { 
+    margin: 0; 
+    background: var(--bg-color); 
+    color: var(--text-dark); 
+    font-family: var(--font-sans);
+}
+
+/* Header / Topbar */
+.topbar {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px 40px; 
+    background: var(--card-bg); 
+    border: none;
+}
+
+.brand { 
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: bold; 
+    text-decoration: none; 
+    color: var(--text-dark); 
+}
+
+.cartlink { 
+    text-decoration: none; 
+    color: var(--text-dark); 
+    font-size: 1.2rem;
+}
+
+/* Contenedor y Título Principal */
+.container { 
+    max-width: 1100px; 
+    margin: 40px auto; 
+    padding: 0 20px; 
+}
+
+h1, h2, .card h3 {
+    font-family: var(--font-serif);
+    color: var(--text-dark);
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+}
+
+/* Grid y Tarjetas */
+.grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 30px; 
+}
+
+/* Wrapper necesario para que las herraduras puedan sobresalir */
+.card-wrap {
+    padding: 22px;
+}
+
+.card {
+    background: var(--card-bg); 
+    border: none; 
+    border-radius: 40px;
+    padding: 30px; 
+    text-align: center;
+    box-shadow: none;
+    position: relative;
+    overflow: visible;
+}
+
+/* Herraduras decorativas — sobresalen del recuadro */
+.horseshoe {
+    position: absolute;
+    width: 58px;
+    height: 64px;
+    z-index: 2;
+}
+
+.horseshoe.top-left {
+    top: -24px;
+    left: -24px;
+    transform: rotate(-45deg);
+}
+
+.horseshoe.bottom-right {
+    bottom: -24px;
+    right: -24px;
+    transform: rotate(135deg);
+}
+
+.card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 10px; /* Imagen con bordes apenas redondeados */
+    margin-bottom: 15px;
+}
+
+.img-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #d4c9bc;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8a7e72;
+    font-size: 0.9rem;
+}
+
+.card h3 {
+    margin: 10px 0;
+    font-size: 1.6rem;
+}
+
+.card .muted {
+    font-size: 0.95rem;
+    color: #8a7e72; /* Un café más suave para la descripción */
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* Botones y Controles */
+.row { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    gap: 8px;
+}
+
+.btn {
+    border: 1px solid var(--text-dark); 
+    background: transparent;
+    padding: 6px 15px; 
+    border-radius: 20px; 
+    cursor: pointer; 
+    text-decoration: none; 
+    color: var(--text-dark);
+    font-size: 0.85rem;
+    transition: all 0.3s;
+}
+
+.btn.primary { 
+    background: var(--text-dark); 
+    color: white; 
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.qty { 
+    width: 60px; 
+    padding: 5px; 
+    border-radius: 15px; 
+    border: 1px solid var(--text-dark); 
+    background: transparent;
+    text-align: center;
+    color: var(--text-dark);
+}
+
+/* Estilos para alertas y tablas (se mantienen limpios) */
+.alert { 
+    background: #fff; 
+    border: 1px solid var(--text-dark); 
+    color: var(--text-dark);
+    padding: 15px; 
+    border-radius: 20px; 
+    text-align: center;
+}
+
+/* -------login-------- */
+.login-box {
+  width: 320px;
+  margin: 100px auto;
+  padding: 25px;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center; 
+}
+
+.login-box label {
+  display: block;
+  margin-top: 10px;
+  color: var(--text-dark);
+  text-align: left; 
+}
+
+.login-box input {
+  width: 90%; 
+  padding: 10px;
+  margin: 10px auto; 
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background: var(--text-dark);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ------admin------ */
+.admin-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    font-family: var(--font-sans);
+    color: var(--text-dark);
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--text-dark);
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+}
+
+.admin-header h2 {
+    font-family: var(--font-serif);
+    margin: 0;
+}
+
+.admin-header a {
+    color: #d9534f; /* Color distintivo para cerrar sesión */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Estilos del Formulario */
+.admin-container form {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.admin-container h3 {
+    font-family: var(--font-serif);
+    margin-bottom: 15px;
+}
+
+.admin-container form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px; /* Esto separa los campos */
+    border: 1px solid rgba(45, 90, 86, 0.2);
+    border-radius: 8px;
+    display: block;
+    box-sizing: border-box; /* Evita que el input se "estire" fuera del form */
+    font-family: var(--font-sans);
+}
+
+.admin-container form button {
+    width: 100%;
+    background: var(--text-dark);
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.3s;
+}
+
+.admin-container form button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* Botón personalizado para subir imagen */
+.file-label {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px dashed rgba(45, 90, 86, 0.4);
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    color: var(--text-dark);
+    font-family: var(--font-sans);
+    box-sizing: border-box;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.file-label:hover {
+    border-color: var(--text-dark);
+    background: rgba(45, 90, 86, 0.05);
+}
+
+.file-label input[type="file"] {
+    display: none;
+}
+
+/* Estilos de la Tabla de Inventario */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+table th {
+    background: var(--text-dark);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-family: var(--font-serif);
+}
+
+table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid var(--bg-color);
+}
