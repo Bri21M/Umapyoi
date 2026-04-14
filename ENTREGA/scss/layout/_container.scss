@@ -1,0 +1,25 @@
+// ============================================
+// _container.scss
+// Contenedor principal y grid
+// ============================================
+
+@use '../abstracts/variables' as *;
+
+.container {
+  max-width: 1100px;
+  margin: $spacing-xl auto;
+  padding: 0 $spacing-md;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $spacing-lg;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}

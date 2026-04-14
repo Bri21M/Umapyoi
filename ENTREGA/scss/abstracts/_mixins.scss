@@ -1,0 +1,37 @@
+// ============================================
+// _mixins.scss
+// Mixins reutilizables para Mi Tienda
+// ============================================
+
+@use 'variables' as *;
+
+// Flexbox centrado
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Flexbox entre extremos
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Tipografía serif
+@mixin heading {
+  font-family: $font-serif;
+  color: $text-dark;
+}
+
+// Transición suave
+@mixin transition($prop: all, $dur: 0.3s) {
+  transition: $prop $dur ease;
+}
+
+// Sombra de tarjeta
+@mixin card-shadow {
+  box-shadow: $shadow-md;
+  border-radius: $radius-md;
+}

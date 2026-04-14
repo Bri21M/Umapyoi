@@ -1,0 +1,58 @@
+// ============================================
+// _header.scss
+// Topbar y navegación
+// ============================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.topbar {
+  @include flex-between;
+  padding: $spacing-md $spacing-xl;
+  background: $card-bg;
+}
+
+.brand {
+  font-family: $font-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: $text-dark;
+  flex-shrink: 0;
+}
+
+.topbar-nav {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.topbar-greeting {
+  font-family: $font-sans;
+  font-size: 0.95rem;
+  color: $text-muted;
+}
+
+.cartlink {
+  text-decoration: none;
+  color: $text-dark;
+  font-size: 0.95rem;
+  @include transition;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &--danger {
+    color: $danger;
+  }
+}
+
+.footer {
+  text-align: center;
+  padding: $spacing-md;
+  color: $text-muted;
+  font-size: 0.85rem;
+  font-family: $font-sans;
+  margin-top: $spacing-xl;
+}

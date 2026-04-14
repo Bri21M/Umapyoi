@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Pedido confirmado</h1>
+<p>Tu pedido se registró con ID <strong>#{{ pedido_id }}</strong>.</p>
+{% if direccion %}
+<p>Tu pedido será enviado a: <strong>{{ direccion }}</strong>{% if ciudad %}, {{ ciudad }}{% endif %}</p>
+{% endif %}
+<a class="btn" href="{{ url_for('index') }}">Volver al catálogo</a>
+{% endblock %}

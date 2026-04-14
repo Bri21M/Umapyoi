@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="admin-container">
+  <div class="admin-header">
+    <h2>Reporte de Ventas Diarias</h2>
+    <p><a href="{{ url_for('admin_panel') }}">← Volver al panel</a> &nbsp;|&nbsp; <a href="{{ url_for('admin_gastos') }}">Gestionar gastos</a></p>
+  </div>
+
+  <form method="GET" action="{{ url_for('admin_reporte') }}" style="display:flex; gap:12px; align-items:center; margin-bottom:30px; flex-wrap:wrap;">
+    <label style="font-weight:bold; color:#2d5a56;">Fecha:</label>
+    <input type="date" name="fecha" value="{{ fecha }}"
+           style="padding:8px 12px; border-radius:8px; border:1px solid #2d5a56; color:#2d5a56; background:#f5efe6;">
+    <button class="btn primary" type="submit">Ver Reporte</button>
+    <button class="btn" type="button" onclick="window.print()">🖨️ Imprimir</button>
+  </form>
+
+  <!-- RESUMEN DE VENTAS -->
+  <div class="reporte-resumen">
+    <h3>Resumen — {{ fecha }}</h3>
+    {% if reporte.resumen %}
+    <div style="display:flex; gap:20px; flex-wrap:wrap; margin-bottom:20px;">
+      <div class="stat-card">
+        <span class="stat-num">{{ reporte.resumen.num_pedidos }}</span>
+        <span class="stat-label">Pedidos</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">${{ "%.2f"|format(reporte.resumen.gran_total) }}</span>
+        <span class="stat-label">Total Vendido</span>
+      </div>
+      <div class="stat-card" style="background:#fdecea;">
+        <span class="stat-num" style="color:#c0392b;">${{ "%.2f"|format(total_gastos) }}</span>
+        <span class="stat-label">Total Gastos</span>
+      </div>
+      <div class="stat-card" style="background:#eafaf1;">
+        <span class="stat-num" style="color:#27ae60;">${{ "%.2f"|format(reporte.resumen.gran_total - total_gastos) }}</span>
+        <span class="stat-label">Ganancia Neta</span>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- TABLA DE PEDIDOS -->
+  {% if reporte.pedidos %}
+  <h3 style="margin-bottom:12px;">Pedidos del día</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Dirección</th>
+        <th>Productos</th>
+        <th>Total</th>
+        <th>Estado</th>
+        <th>Hora</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in reporte.pedidos %}
+      <tr>
+        <td>#{{ p.id }}</td>
+        <td>{{ p.cliente_nombre }}</td>
+        <td style="font-size:0.85em;">{{ p.direccion or '—' }}{% if p.ciudad %}, {{ p.ciudad }}{% endif %}</td>
+        <td style="font-size:0.85em; text-align:left;">{{ p.productos or '—' }}</td>
+        <td>${{ "%.2f"|format(p.total) }}</td>
+        <td><span class="estado-badge estado-{{ p.estado }}">{{ p.estado }}</span></td>
+        <td style="font-size:0.85em;">{{ p.creado_en }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p style="color:#8a7e72; text-align:center; padding:40px 0;">No hay pedidos para esta fecha.</p>
+  {% endif %}
+
+  <!-- GASTOS DEL DÍA -->
+  <div style="margin-top:40px;">
+    <h3 style="margin-bottom:12px;">Gastos del día</h3>
+    {% if gastos %}
+    <table>
+      <thead>
+        <tr>
+          <th>Concepto</th>
+          <th>Monto</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for g in gastos %}
+        <tr>
+          <td>{{ g.concepto }}</td>
+          <td style="color:#c0392b;">${{ "%.2f"|format(g.monto) }}</td>
+          <td>{{ g.fecha }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p style="color:#8a7e72;">No hay gastos registrados para esta fecha.</p>
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}

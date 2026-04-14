@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="admin-container">
+  <div class="admin-header">
+    <h2>Gestión de Pedidos</h2>
+    <p><a href="{{ url_for('admin_panel') }}">← Volver al panel</a></p>
+  </div>
+
+  <form method="POST" action="{{ url_for('admin_pedidos') }}">
+    <div style="display:flex; gap:12px; align-items:center; margin-bottom:20px; flex-wrap:wrap;">
+      <label style="font-weight:bold; color:#2d5a56;">Cambiar estado seleccionados a:</label>
+      <select name="estado_bulk" style="padding:8px 12px; border-radius:8px; border:1px solid #2d5a56; color:#2d5a56; background:#f5efe6;">
+        <option value="pendiente">Pendiente</option>
+        <option value="procesando">Procesando</option>
+        <option value="enviado">Enviado</option>
+        <option value="entregado">Entregado</option>
+        <option value="cancelado">Cancelado</option>
+      </select>
+      <button class="btn primary" type="submit">Aplicar</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="select-all" title="Seleccionar todos"></th>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Email</th>
+          <th>Productos</th>
+          <th>Total</th>
+          <th>Estado</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in pedidos %}
+        <tr>
+          <td><input type="checkbox" name="pedido_id" value="{{ p.id }}"></td>
+          <td>#{{ p.id }}</td>
+          <td>{{ p.cliente_nombre }}</td>
+          <td>{{ p.cliente_email or '—' }}</td>
+          <td style="font-size:0.85em; text-align:left;">{{ p.productos or '—' }}</td>
+          <td>${{ "%.2f"|format(p.total) }}</td>
+          <td>
+            <span class="estado-badge estado-{{ p.estado }}">{{ p.estado }}</span>
+          </td>
+          <td style="font-size:0.85em;">{{ p.creado_en }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </form>
+
+  <script>
+    document.getElementById('select-all').addEventListener('change', function() {
+      document.querySelectorAll('input[name="pedido_id"]').forEach(cb => cb.checked = this.checked);
+    });
+  </script>
+</div>
+{% endblock %}

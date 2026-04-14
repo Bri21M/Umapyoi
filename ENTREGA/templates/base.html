@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title or "Mi Tienda" }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('index') }}">Mi Tienda</a>
+
+    <nav class="topbar-nav">
+      <a class="cartlink" href="{{ url_for('carrito') }}">🛒 Carrito</a>
+
+      {% if session.get('rol') == 'admin' %}
+        <a class="cartlink" href="{{ url_for('admin_panel') }}">Panel Admin</a>
+        <a class="cartlink cartlink--danger" href="{{ url_for('logout') }}">Cerrar Sesión</a>
+      {% elif session.get('usuario_nombre') %}
+        <span class="topbar-greeting">Hola, {{ session['usuario_nombre'] }}</span>
+        <a class="cartlink cartlink--danger" href="{{ url_for('logout') }}">Cerrar Sesión</a>
+      {% else %}
+        <a class="cartlink" href="{{ url_for('login') }}">Login</a>
+        <a class="cartlink" href="{{ url_for('registro') }}">Registro</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <main class="container">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alerts">
+          {% for m in messages %}
+            <div class="alert">{{ m }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">Hecho con Flask + SQLite</footer>
+</body>
+</html>

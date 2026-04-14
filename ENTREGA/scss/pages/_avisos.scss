@@ -1,0 +1,72 @@
+// ============================================
+// _avisos.scss
+// Avisos al cliente en la página principal
+// ============================================
+
+@use 'sass:color';
+@use '../abstracts/variables' as *;
+
+.avisos-section {
+  margin-bottom: $spacing-xl;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+// Banner principal con fondo de imagen
+.avisos-banner {
+  background-image: url('/static/img/fondoBanner.png');
+  background-size: 100% auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: $radius-lg;
+  padding: $spacing-xl $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-md;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 5120 / 1080;
+
+  // Capa oscura semitransparente para que el texto se lea bien
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.20);
+    border-radius: $radius-lg;
+  }
+}
+
+.aviso-card {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 243, 205, 0.10);
+  border-left: 5px solid #f0ad4e;
+  border-radius: $radius-sm;
+  padding: $spacing-md $spacing-lg;
+  display: flex;
+  gap: $spacing-md;
+  align-items: center;
+  flex-wrap: wrap;
+  color: #fff;
+  font-family: $font-sans;
+
+  strong {
+    font-size: 1.4rem;
+    font-weight: bold;
+    white-space: nowrap;
+    color: #f0ad4e;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.8);
+  }
+
+  p {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 0;
+    color: #fff;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.8);
+  }
+}

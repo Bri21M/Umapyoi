@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="admin-container">
+  <div class="admin-header">
+    <h2>Avisos al Cliente</h2>
+    <p><a href="{{ url_for('admin_panel') }}">← Volver al panel</a></p>
+  </div>
+
+  <h3>Publicar Nuevo Aviso</h3>
+  <form action="{{ url_for('admin_avisos') }}" method="POST">
+    <input type="text" name="titulo" placeholder="Título del aviso" required>
+    <textarea name="mensaje" placeholder="Escribe el aviso aquí..." rows="4"
+      style="width:100%; padding:12px; margin-bottom:15px; border:1px solid rgba(45,90,86,0.2); border-radius:8px; resize:vertical; font-family:inherit; box-sizing:border-box;"></textarea>
+    <button type="submit">Publicar Aviso</button>
+  </form>
+
+  <h3>Avisos Publicados</h3>
+  {% if avisos %}
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Mensaje</th>
+        <th>Fecha</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for a in avisos %}
+      <tr>
+        <td>{{ a.id }}</td>
+        <td>{{ a.titulo }}</td>
+        <td>{{ a.mensaje }}</td>
+        <td>{{ a.creado_en }}</td>
+        <td>
+          <form method="POST" action="{{ url_for('admin_eliminar_aviso', aviso_id=a.id) }}"
+                onsubmit="return confirm('¿Eliminar este aviso?');">
+            <button class="btn btn-danger" type="submit">Eliminar</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p style="color:#8a7e72;">No hay avisos publicados.</p>
+  {% endif %}
+</div>
+{% endblock %}

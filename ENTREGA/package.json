@@ -1,0 +1,13 @@
+{
+  "name": "mi-tienda",
+  "version": "1.0.0",
+  "description": "Tienda en línea con Flask + Sass",
+  "scripts": {
+    "sass:build": "sass scss/main.scss static/styles.css --style=expanded --no-source-map",
+    "sass:watch": "sass scss/main.scss static/styles.css --watch --style=expanded --source-map",
+    "sass:dev":   "sass scss/main.scss static/styles.css --style=expanded --source-map"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}

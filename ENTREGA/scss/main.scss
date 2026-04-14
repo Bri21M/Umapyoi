@@ -1,0 +1,22 @@
+// ============================================
+// main.scss  —  Punto de entrada principal
+// Mi Tienda · Hoja de estilos con Sass
+// ============================================
+
+// 1. Abstracts (variables y mixins, sin CSS generado)
+@forward 'abstracts/variables';
+@forward 'abstracts/mixins';
+
+// 2. Layout (estructura de página)
+@use 'layout/base';
+@use 'layout/header';
+@use 'layout/container';
+
+// 3. Componentes reutilizables
+@use 'components/card';
+@use 'components/buttons';
+
+// 4. Páginas específicas
+@use 'pages/login';
+@use 'pages/admin';
+@use 'pages/avisos';

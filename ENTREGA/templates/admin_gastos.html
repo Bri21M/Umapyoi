@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="admin-container">
+  <div class="admin-header">
+    <h2>Gestión de Gastos</h2>
+    <p><a href="{{ url_for('admin_reporte') }}">← Volver al reporte</a></p>
+  </div>
+
+  <!-- FORMULARIO NUEVO GASTO -->
+  <form method="POST" action="{{ url_for('admin_gastos') }}" style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:30px; align-items:flex-end;">
+    <div style="display:flex; flex-direction:column; gap:4px;">
+      <label style="font-size:0.85rem; color:#2d5a56;">Concepto</label>
+      <input class="input" name="concepto" placeholder="Ej: Luz, Empleados, Renta" required style="min-width:200px;">
+    </div>
+    <div style="display:flex; flex-direction:column; gap:4px;">
+      <label style="font-size:0.85rem; color:#2d5a56;">Monto ($)</label>
+      <input class="input" name="monto" type="number" step="0.01" min="0" placeholder="0.00" required>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:4px;">
+      <label style="font-size:0.85rem; color:#2d5a56;">Fecha (opcional)</label>
+      <input class="input" name="fecha" type="date">
+    </div>
+    <button class="btn primary" type="submit">Registrar Gasto</button>
+  </form>
+
+  <!-- LISTA DE GASTOS -->
+  {% if gastos %}
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Concepto</th>
+        <th>Monto</th>
+        <th>Fecha</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for g in gastos %}
+      <tr>
+        <td>#{{ g.id }}</td>
+        <td>{{ g.concepto }}</td>
+        <td style="color:#c0392b; font-weight:bold;">${{ "%.2f"|format(g.monto) }}</td>
+        <td>{{ g.fecha }}</td>
+        <td>
+          <form method="POST" action="{{ url_for('admin_eliminar_gasto', gasto_id=g.id) }}">
+            <button class="btn danger" type="submit" onclick="return confirm('¿Eliminar este gasto?')">Eliminar</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p style="color:#8a7e72; text-align:center; padding:40px 0;">No hay gastos registrados.</p>
+  {% endif %}
+</div>
+{% endblock %}

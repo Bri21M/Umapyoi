@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="admin-container">
+  <div class="admin-header">
+    <h2>Editar Producto</h2>
+    <p><a href="{{ url_for('admin_panel') }}">← Volver al panel</a></p>
+  </div>
+
+  <form action="{{ url_for('admin_editar_producto', producto_id=p.id) }}" method="POST" enctype="multipart/form-data">
+    <input type="text" name="nombre" value="{{ p.nombre }}" placeholder="Nombre del producto" required>
+    <input type="text" name="descripcion" value="{{ p.descripcion or '' }}" placeholder="Descripción">
+    <input type="number" name="precio" step="0.01" value="{{ p.precio }}" placeholder="Precio" required>
+    <input type="number" name="stock" value="{{ p.stock }}" placeholder="Stock" required>
+
+    {% if p.imagen_url %}
+      <div style="margin-bottom:12px;">
+        <p style="font-size:0.9em; color:#8a7e72;">Imagen actual:</p>
+        <img src="{{ p.imagen_url }}" alt="{{ p.nombre }}" style="width:100px; height:100px; object-fit:cover; border-radius:10px;">
+      </div>
+    {% endif %}
+
+    <label class="file-label">
+      📷 Cambiar imagen (opcional)
+      <input type="file" name="imagen" accept="image/*" id="imagen-input">
+    </label>
+    <div id="preview-container" style="display:none; align-items:center; gap:10px; margin-top:8px;">
+      <img id="preview-img" src="" alt="Vista previa" style="width:80px; height:80px; object-fit:cover; border-radius:8px;">
+      <span id="preview-nombre" style="font-size:0.9em; color:#555;"></span>
+    </div>
+
+    <button type="submit">Guardar Cambios</button>
+  </form>
+
+  <script>
+    document.getElementById('imagen-input').addEventListener('change', function() {
+      const file = this.files[0];
+      const container = document.getElementById('preview-container');
+      const img = document.getElementById('preview-img');
+      const nombre = document.getElementById('preview-nombre');
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = e => { img.src = e.target.result; nombre.textContent = file.name; container.style.display = 'flex'; };
+        reader.readAsDataURL(file);
+      } else { container.style.display = 'none'; }
+    });
+  </script>
+</div>
+{% endblock %}

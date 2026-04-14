@@ -1,0 +1,76 @@
+// ============================================
+// _card.scss
+// Tarjetas de producto con herraduras
+// ============================================
+
+@use '../abstracts/variables' as *;
+
+.card-wrap {
+  padding: 22px;
+}
+
+.card {
+  background: $card-bg;
+  border: none;
+  border-radius: $radius-card;
+  padding: $spacing-lg;
+  text-align: center;
+  box-shadow: none;
+  position: relative;
+  overflow: visible;
+
+  // Imagen del producto
+  img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: $radius-sm + 4;
+    margin-bottom: 15px;
+  }
+
+  h3 {
+    margin: 10px 0;
+    font-size: 1.6rem;
+  }
+
+  .muted {
+    font-size: 0.95rem;
+    color: $text-muted;
+    margin-bottom: $spacing-md;
+    display: block;
+  }
+}
+
+// Placeholder de imagen
+.img-placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #d4c9bc;
+  border-radius: $radius-sm + 4;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $text-muted;
+  font-size: 0.9rem;
+}
+
+// Herraduras decorativas
+.horseshoe {
+  position: absolute;
+  width: 58px;
+  height: 64px;
+  z-index: 2;
+
+  &.top-left {
+    top: -24px;
+    left: -24px;
+    transform: rotate(-45deg);
+  }
+
+  &.bottom-right {
+    bottom: -24px;
+    right: -24px;
+    transform: rotate(135deg);
+  }
+}

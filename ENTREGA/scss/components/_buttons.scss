@@ -1,0 +1,47 @@
+// ============================================
+// _buttons.scss
+// Botones y controles de cantidad
+// ============================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.btn {
+  border: 1px solid $text-dark;
+  background: transparent;
+  padding: 6px 15px;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  text-decoration: none;
+  color: $text-dark;
+  font-size: 0.85rem;
+  @include transition;
+
+  &.primary {
+    background: $text-dark;
+    color: white;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.qty {
+  width: 60px;
+  padding: $spacing-xs;
+  border-radius: 15px;
+  border: 1px solid $text-dark;
+  background: transparent;
+  text-align: center;
+  color: $text-dark;
+}
+
+.alert {
+  background: #fff;
+  border: 1px solid $text-dark;
+  color: $text-dark;
+  padding: 15px;
+  border-radius: $radius-lg;
+  text-align: center;
+}

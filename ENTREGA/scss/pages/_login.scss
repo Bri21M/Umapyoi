@@ -1,0 +1,52 @@
+// ============================================
+// _login.scss
+// Página de inicio de sesión
+// ============================================
+
+@use '../abstracts/variables' as *;
+
+.login-box {
+  width: 320px;
+  margin: 100px auto;
+  padding: 25px;
+  background: $card-bg;
+  border-radius: $radius-md;
+  box-shadow: $shadow-lg;
+  text-align: center;
+
+  label {
+    display: block;
+    margin-top: $spacing-sm;
+    color: $text-dark;
+    text-align: left;
+  }
+
+  input {
+    width: 90%;
+    padding: $spacing-sm;
+    margin: $spacing-sm auto;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: $radius-sm;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    margin-top: $spacing-md;
+    background: $text-dark;
+    color: white;
+    border: none;
+    border-radius: $radius-sm;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+// ---- Enlace en nota del login/registro ----
+.note a {
+  color: $text-dark;
+  font-weight: bold;
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+}

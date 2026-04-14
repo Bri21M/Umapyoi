@@ -1,0 +1,32 @@
+// ============================================
+// _base.scss
+// Reset y estilos base del body
+// ============================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+body {
+  margin: 0;
+  background-color: $bg-color;
+  background-image: url('/static/img/fondo.png');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  color: $text-dark;
+  font-family: $font-sans;
+}
+
+h1, h2, h3 {
+  @include heading;
+}
+
+h1 {
+  font-size: 3.5rem;
+  margin-bottom: $spacing-lg;
+}
+
+a {
+  color: $text-dark;
+  text-decoration: none;
+}

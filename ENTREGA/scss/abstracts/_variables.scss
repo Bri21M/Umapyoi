@@ -1,0 +1,33 @@
+// ============================================
+// _variables.scss
+// Paleta de colores y fuentes de Mi Tienda
+// ============================================
+
+// Colores
+$bg-color:   #f5efe6;   // Crema claro del fondo
+$card-bg:    #e8ded1;   // Beige de las tarjetas y topbar
+$text-dark:  #2d5a56;   // Verde pino oscuro para textos y botones
+$text-muted: #8a7e72;   // Café suave para descripciones
+$danger:     #d9534f;   // Rojo para cerrar sesión
+
+// Fuentes
+$font-serif: 'Georgia', serif;
+$font-sans:  system-ui, Arial, sans-serif;
+
+// Bordes y radios
+$radius-sm:   6px;
+$radius-md:   12px;
+$radius-lg:   20px;
+$radius-card: 40px;
+
+// Sombras
+$shadow-sm: 0 2px 8px  rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 10px rgba(0, 0, 0, 0.05);
+$shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.10);
+
+// Espaciado base
+$spacing-xs: 5px;
+$spacing-sm: 10px;
+$spacing-md: 20px;
+$spacing-lg: 30px;
+$spacing-xl: 40px;
