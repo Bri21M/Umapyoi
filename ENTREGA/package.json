@@ -5,9 +5,11 @@
   "scripts": {
     "sass:build": "sass scss/main.scss static/styles.css --style=expanded --no-source-map",
     "sass:watch": "sass scss/main.scss static/styles.css --watch --style=expanded --source-map",
-    "sass:dev":   "sass scss/main.scss static/styles.css --style=expanded --source-map"
+    "sass:dev": "sass scss/main.scss static/styles.css --style=expanded --source-map"
   },
   "devDependencies": {
-    "sass": "^1.77.0"
+    "gulp": "^5.0.1",
+    "gulp-sass": "^6.0.1",
+    "sass": "^1.99.0"
   }
 }
